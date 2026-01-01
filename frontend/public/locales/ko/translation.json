@@ -1,0 +1,156 @@
+{
+  "site": {
+    "name": "세종 행정사무소",
+    "description": "외국인 등록, 비자 연장 등 행정 서비스를 제공합니다"
+  },
+  "nav": {
+    "home": "홈",
+    "posts": "블로그",
+    "contact": "문의하기",
+    "about": "소개",
+    "admin": "관리자"
+  },
+  "language": {
+    "ko": "한국어",
+    "en": "English",
+    "zh": "中文"
+  },
+  "home": {
+    "hero": {
+      "title": "세종 행정사무소",
+      "subtitle": "외국인 등록, 비자 연장, 체류자격 변경 등\n전문적인 행정 서비스를 제공합니다",
+      "cta": "문의하기"
+    },
+    "services": {
+      "title": "제공 서비스",
+      "visa": {
+        "title": "비자 연장",
+        "description": "각종 비자 연장 신청 대행"
+      },
+      "registration": {
+        "title": "외국인 등록",
+        "description": "외국인등록증 신청 및 재발급"
+      },
+      "change": {
+        "title": "체류자격 변경",
+        "description": "체류자격 변경 신청 대행"
+      }
+    },
+    "recentPosts": "최근 게시글"
+  },
+  "posts": {
+    "title": "블로그",
+    "empty": "게시글이 없습니다",
+    "readMore": "자세히 보기",
+    "views": "조회"
+  },
+  "contact": {
+    "title": "문의하기",
+    "subtitle": "궁금한 점이 있으시면 문의해 주세요",
+    "form": {
+      "name": "이름",
+      "namePlaceholder": "이름을 입력하세요",
+      "contact": "연락처",
+      "contactPlaceholder": "전화번호 또는 이메일",
+      "message": "문의 내용",
+      "messagePlaceholder": "문의 내용을 입력하세요",
+      "secret": "비밀글로 작성",
+      "secretPassword": "비밀번호",
+      "secretPasswordPlaceholder": "비밀글 열람용 비밀번호",
+      "submit": "문의하기",
+      "submitting": "전송 중..."
+    },
+    "list": {
+      "title": "문의 목록",
+      "empty": "문의 내역이 없습니다",
+      "secret": "비밀글",
+      "replied": "답변완료",
+      "waiting": "답변대기"
+    },
+    "detail": {
+      "reply": "관리자 답변",
+      "noReply": "아직 답변이 없습니다",
+      "enterPassword": "비밀번호를 입력하세요",
+      "verify": "확인"
+    },
+    "success": "문의가 성공적으로 접수되었습니다",
+    "error": "문의 접수 중 오류가 발생했습니다"
+  },
+  "about": {
+    "title": "세종 행정사무소 소개",
+    "description": "저희 세종 행정사무소는 외국인 고객분들께 전문적인 행정 서비스를 제공하고 있습니다.",
+    "hours": {
+      "title": "영업 시간",
+      "weekday": "평일: 09:00 - 18:00",
+      "saturday": "토요일: 10:00 - 14:00",
+      "sunday": "일요일/공휴일: 휴무"
+    },
+    "location": {
+      "title": "위치",
+      "address": "세종시 조치원읍 행정중심로 123"
+    },
+    "contact": {
+      "title": "연락처",
+      "phone": "전화: 044-123-4567",
+      "email": "이메일: info@sejong-admin.kr"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "관리자 로그인",
+      "username": "아이디",
+      "password": "비밀번호",
+      "submit": "로그인",
+      "error": "아이디 또는 비밀번호가 올바르지 않습니다"
+    },
+    "dashboard": {
+      "title": "대시보드",
+      "stats": {
+        "totalPosts": "전체 게시글",
+        "publicPosts": "공개 게시글",
+        "totalContacts": "전체 문의",
+        "unreadContacts": "미확인 문의",
+        "unrepliedContacts": "미답변 문의"
+      },
+      "recentPosts": "최근 게시글",
+      "recentContacts": "최근 문의"
+    },
+    "posts": {
+      "title": "게시글 관리",
+      "new": "새 게시글",
+      "edit": "게시글 수정",
+      "create": "게시글 작성",
+      "delete": "삭제",
+      "confirmDelete": "정말 삭제하시겠습니까?",
+      "public": "공개",
+      "private": "비공개"
+    },
+    "contacts": {
+      "title": "문의 관리",
+      "reply": "답변하기",
+      "replyPlaceholder": "답변 내용을 입력하세요",
+      "replyPublic": "답변 공개",
+      "submitReply": "답변 등록",
+      "delete": "삭제"
+    },
+    "logout": "로그아웃"
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "save": "저장",
+    "cancel": "취소",
+    "delete": "삭제",
+    "edit": "수정",
+    "back": "뒤로",
+    "noData": "데이터가 없습니다"
+  },
+  "pagination": {
+    "prev": "이전",
+    "next": "다음",
+    "page": "페이지"
+  },
+  "kakao": {
+    "chat": "카카오톡 상담"
+  }
+}

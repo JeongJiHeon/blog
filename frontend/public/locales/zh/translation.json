@@ -1,0 +1,156 @@
+{
+  "site": {
+    "name": "世宗行政事务所",
+    "description": "提供外国人登录、签证延期等行政服务"
+  },
+  "nav": {
+    "home": "首页",
+    "posts": "博客",
+    "contact": "咨询",
+    "about": "关于我们",
+    "admin": "管理"
+  },
+  "language": {
+    "ko": "한국어",
+    "en": "English",
+    "zh": "中文"
+  },
+  "home": {
+    "hero": {
+      "title": "世宗行政事务所",
+      "subtitle": "提供外国人登录、签证延期、居留资格变更等\n专业行政服务",
+      "cta": "咨询"
+    },
+    "services": {
+      "title": "服务内容",
+      "visa": {
+        "title": "签证延期",
+        "description": "各类签证延期申请代办"
+      },
+      "registration": {
+        "title": "外国人登录",
+        "description": "登录证申请及补办"
+      },
+      "change": {
+        "title": "居留资格变更",
+        "description": "居留资格变更申请代办"
+      }
+    },
+    "recentPosts": "最新文章"
+  },
+  "posts": {
+    "title": "博客",
+    "empty": "暂无文章",
+    "readMore": "阅读更多",
+    "views": "浏览"
+  },
+  "contact": {
+    "title": "咨询",
+    "subtitle": "如有疑问，请随时咨询",
+    "form": {
+      "name": "姓名",
+      "namePlaceholder": "请输入姓名",
+      "contact": "联系方式",
+      "contactPlaceholder": "电话或邮箱",
+      "message": "咨询内容",
+      "messagePlaceholder": "请输入咨询内容",
+      "secret": "设为私密",
+      "secretPassword": "密码",
+      "secretPasswordPlaceholder": "查看私密信息的密码",
+      "submit": "提交",
+      "submitting": "提交中..."
+    },
+    "list": {
+      "title": "咨询列表",
+      "empty": "暂无咨询",
+      "secret": "私密",
+      "replied": "已回复",
+      "waiting": "等待回复"
+    },
+    "detail": {
+      "reply": "管理员回复",
+      "noReply": "尚未回复",
+      "enterPassword": "请输入密码",
+      "verify": "确认"
+    },
+    "success": "咨询已成功提交",
+    "error": "提交时发生错误"
+  },
+  "about": {
+    "title": "关于世宗行政事务所",
+    "description": "世宗行政事务所为外国客户提供专业的行政服务。",
+    "hours": {
+      "title": "营业时间",
+      "weekday": "工作日：09:00 - 18:00",
+      "saturday": "星期六：10:00 - 14:00",
+      "sunday": "星期日/节假日：休息"
+    },
+    "location": {
+      "title": "地址",
+      "address": "世宗市鸟致院邑行政中心路123号"
+    },
+    "contact": {
+      "title": "联系方式",
+      "phone": "电话：044-123-4567",
+      "email": "邮箱：info@sejong-admin.kr"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "管理员登录",
+      "username": "用户名",
+      "password": "密码",
+      "submit": "登录",
+      "error": "用户名或密码错误"
+    },
+    "dashboard": {
+      "title": "仪表板",
+      "stats": {
+        "totalPosts": "全部文章",
+        "publicPosts": "公开文章",
+        "totalContacts": "全部咨询",
+        "unreadContacts": "未读",
+        "unrepliedContacts": "未回复"
+      },
+      "recentPosts": "最新文章",
+      "recentContacts": "最新咨询"
+    },
+    "posts": {
+      "title": "文章管理",
+      "new": "新建文章",
+      "edit": "编辑文章",
+      "create": "创建文章",
+      "delete": "删除",
+      "confirmDelete": "确定要删除吗？",
+      "public": "公开",
+      "private": "私密"
+    },
+    "contacts": {
+      "title": "咨询管理",
+      "reply": "回复",
+      "replyPlaceholder": "请输入回复内容",
+      "replyPublic": "公开回复",
+      "submitReply": "提交回复",
+      "delete": "删除"
+    },
+    "logout": "退出登录"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "back": "返回",
+    "noData": "暂无数据"
+  },
+  "pagination": {
+    "prev": "上一页",
+    "next": "下一页",
+    "page": "页"
+  },
+  "kakao": {
+    "chat": "KakaoTalk咨询"
+  }
+}

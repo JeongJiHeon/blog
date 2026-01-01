@@ -1,0 +1,156 @@
+{
+  "site": {
+    "name": "Sejong Administrative Office",
+    "description": "Providing administrative services including alien registration and visa extension"
+  },
+  "nav": {
+    "home": "Home",
+    "posts": "Blog",
+    "contact": "Contact",
+    "about": "About",
+    "admin": "Admin"
+  },
+  "language": {
+    "ko": "한국어",
+    "en": "English",
+    "zh": "中文"
+  },
+  "home": {
+    "hero": {
+      "title": "Sejong Administrative Office",
+      "subtitle": "Professional administrative services including\nalien registration, visa extension, and status change",
+      "cta": "Contact Us"
+    },
+    "services": {
+      "title": "Our Services",
+      "visa": {
+        "title": "Visa Extension",
+        "description": "Visa extension application service"
+      },
+      "registration": {
+        "title": "Alien Registration",
+        "description": "Registration card application and reissue"
+      },
+      "change": {
+        "title": "Status Change",
+        "description": "Status of residence change service"
+      }
+    },
+    "recentPosts": "Recent Posts"
+  },
+  "posts": {
+    "title": "Blog",
+    "empty": "No posts available",
+    "readMore": "Read More",
+    "views": "Views"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Please feel free to contact us with any questions",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Enter your name",
+      "contact": "Contact",
+      "contactPlaceholder": "Phone or email",
+      "message": "Message",
+      "messagePlaceholder": "Enter your message",
+      "secret": "Private message",
+      "secretPassword": "Password",
+      "secretPasswordPlaceholder": "Password to view private message",
+      "submit": "Submit",
+      "submitting": "Submitting..."
+    },
+    "list": {
+      "title": "Inquiries",
+      "empty": "No inquiries",
+      "secret": "Private",
+      "replied": "Replied",
+      "waiting": "Waiting"
+    },
+    "detail": {
+      "reply": "Admin Reply",
+      "noReply": "No reply yet",
+      "enterPassword": "Enter password",
+      "verify": "Verify"
+    },
+    "success": "Your inquiry has been submitted successfully",
+    "error": "An error occurred while submitting"
+  },
+  "about": {
+    "title": "About Sejong Administrative Office",
+    "description": "Sejong Administrative Office provides professional administrative services for foreign nationals.",
+    "hours": {
+      "title": "Business Hours",
+      "weekday": "Weekdays: 09:00 - 18:00",
+      "saturday": "Saturday: 10:00 - 14:00",
+      "sunday": "Sunday/Holidays: Closed"
+    },
+    "location": {
+      "title": "Location",
+      "address": "123 Administrative Center Road, Jochiwon-eup, Sejong City"
+    },
+    "contact": {
+      "title": "Contact",
+      "phone": "Phone: 044-123-4567",
+      "email": "Email: info@sejong-admin.kr"
+    }
+  },
+  "admin": {
+    "login": {
+      "title": "Admin Login",
+      "username": "Username",
+      "password": "Password",
+      "submit": "Login",
+      "error": "Invalid username or password"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "stats": {
+        "totalPosts": "Total Posts",
+        "publicPosts": "Public Posts",
+        "totalContacts": "Total Inquiries",
+        "unreadContacts": "Unread",
+        "unrepliedContacts": "Unreplied"
+      },
+      "recentPosts": "Recent Posts",
+      "recentContacts": "Recent Inquiries"
+    },
+    "posts": {
+      "title": "Manage Posts",
+      "new": "New Post",
+      "edit": "Edit Post",
+      "create": "Create Post",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure you want to delete?",
+      "public": "Public",
+      "private": "Private"
+    },
+    "contacts": {
+      "title": "Manage Inquiries",
+      "reply": "Reply",
+      "replyPlaceholder": "Enter your reply",
+      "replyPublic": "Public reply",
+      "submitReply": "Submit Reply",
+      "delete": "Delete"
+    },
+    "logout": "Logout"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "noData": "No data available"
+  },
+  "pagination": {
+    "prev": "Previous",
+    "next": "Next",
+    "page": "Page"
+  },
+  "kakao": {
+    "chat": "KakaoTalk Chat"
+  }
+}
