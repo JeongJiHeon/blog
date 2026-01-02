@@ -16,7 +16,13 @@
       "Bash(python3:*)",
       "Bash(lsof:*)",
       "Bash(xargs kill -9)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(cat:*)",
+      "Bash(ipconfig getifaddr:*)",
+      "Bash(ip addr:*)",
+      "Bash(ngrok version:*)",
+      "Bash(ngrok http:*)",
+      "Bash(pkill:*)"
     ]
   }
 }

@@ -11,13 +11,15 @@ export default defineConfig({
     },
   },
   server: {
+    port: 9001,
+    allowedHosts: ['clay-superearthly-cavalierly.ngrok-free.dev'],
     proxy: {
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'http://localhost:9000',
         changeOrigin: true,
       },
       '/uploads': {
-        target: 'http://localhost:8000',
+        target: 'http://localhost:9000',
         changeOrigin: true,
       },
     },

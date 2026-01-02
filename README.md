@@ -47,11 +47,11 @@ python scripts/init_db.py
 python scripts/seed_data.py
 
 # 서버 실행
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 9000
 ```
 
-Backend: http://localhost:8000
-API 문서: http://localhost:8000/docs
+Backend: http://localhost:9000
+API 문서: http://localhost:9000/docs
 
 ### 2. Frontend 설정
 
@@ -65,7 +65,7 @@ npm install
 npm run dev
 ```
 
-Frontend: http://localhost:5173
+Frontend: http://localhost:9001
 
 ## 관리자 계정
 
@@ -134,7 +134,7 @@ DATABASE_URL=sqlite:///./data/blog.db
 SECRET_KEY=your-secret-key
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=1440
-FRONTEND_URL=http://localhost:5173
+FRONTEND_URL=http://localhost:9001
 ```
 
 ## 카카오톡 상담 설정
