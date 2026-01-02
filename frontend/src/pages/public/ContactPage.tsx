@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Lock, CheckCircle, Clock } from 'lucide-react'
+import { Lock, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Pagination } from '@/components/common/Pagination'
 import { LoadingSpinner } from '@/components/common/LoadingSpinner'
 import { contactsApi } from '@/lib/api'
@@ -78,47 +77,60 @@ export function ContactPage() {
   }
 
   return (
-    <div className="container py-8 md:py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Contact Form */}
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('contact.title')}</CardTitle>
-            <p className="text-muted-foreground">{t('contact.subtitle')}</p>
-          </CardHeader>
-          <CardContent>
+    <div className="section-padding">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Left column - Form */}
+          <div>
+            <p className="text-fluid-sm text-muted-foreground mb-3 tracking-wide uppercase">
+              Inquiry
+            </p>
+            <h1 className="text-fluid-3xl font-medium tracking-tight mb-4">
+              {t('contact.title')}
+            </h1>
+            <p className="text-muted-foreground mb-10">
+              {t('contact.subtitle')}
+            </p>
+
             {submitSuccess && (
-              <div className="mb-4 p-4 bg-green-50 text-green-800 rounded-lg flex items-center gap-2">
-                <CheckCircle size={20} />
+              <div className="mb-6 p-4 bg-muted text-foreground rounded text-sm">
                 {t('contact.success')}
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="name">{t('contact.form.name')}</Label>
+                <Label htmlFor="name" className="text-sm font-medium">
+                  {t('contact.form.name')} *
+                </Label>
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder={t('contact.form.namePlaceholder')}
                   required
+                  className="mt-2"
                 />
               </div>
 
               <div>
-                <Label htmlFor="contact">{t('contact.form.contact')}</Label>
+                <Label htmlFor="contact" className="text-sm font-medium">
+                  {t('contact.form.contact')} *
+                </Label>
                 <Input
                   id="contact"
                   value={formData.contact}
                   onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                   placeholder={t('contact.form.contactPlaceholder')}
                   required
+                  className="mt-2"
                 />
               </div>
 
               <div>
-                <Label htmlFor="message">{t('contact.form.message')}</Label>
+                <Label htmlFor="message" className="text-sm font-medium">
+                  {t('contact.form.message')} *
+                </Label>
                 <Textarea
                   id="message"
                   value={formData.message}
@@ -126,6 +138,7 @@ export function ContactPage() {
                   placeholder={t('contact.form.messagePlaceholder')}
                   rows={5}
                   required
+                  className="mt-2"
                 />
               </div>
 
@@ -137,14 +150,16 @@ export function ContactPage() {
                     setFormData({ ...formData, is_secret: checked as boolean })
                   }
                 />
-                <Label htmlFor="secret" className="cursor-pointer">
+                <Label htmlFor="secret" className="text-sm cursor-pointer">
                   {t('contact.form.secret')}
                 </Label>
               </div>
 
               {formData.is_secret && (
                 <div>
-                  <Label htmlFor="password">{t('contact.form.secretPassword')}</Label>
+                  <Label htmlFor="password" className="text-sm font-medium">
+                    {t('contact.form.secretPassword')}
+                  </Label>
                   <Input
                     id="password"
                     type="password"
@@ -153,6 +168,7 @@ export function ContactPage() {
                       setFormData({ ...formData, secret_password: e.target.value })
                     }
                     placeholder={t('contact.form.secretPasswordPlaceholder')}
+                    className="mt-2"
                   />
                 </div>
               )}
@@ -161,67 +177,65 @@ export function ContactPage() {
                 {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
               </Button>
             </form>
-          </CardContent>
-        </Card>
+          </div>
 
-        {/* Contact List */}
-        <div>
-          <h2 className="text-2xl font-bold mb-4">{t('contact.list.title')}</h2>
+          {/* Right column - List */}
+          <div>
+            <h2 className="text-sm font-medium uppercase tracking-wide mb-8">
+              {t('contact.list.title')}
+            </h2>
 
-          {isLoading ? (
-            <LoadingSpinner className="py-12" />
-          ) : contacts.length > 0 ? (
-            <div className="space-y-3">
-              {contacts.map((contact) => (
-                <Link
-                  key={contact.id}
-                  to={`/contact/${contact.id}`}
-                  className="block"
-                >
-                  <Card className="hover:shadow-md transition-shadow">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          {contact.is_secret && (
-                            <Lock size={14} className="text-muted-foreground" />
-                          )}
-                          <span className="font-medium">{contact.name}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-sm">
-                          {contact.has_reply ? (
-                            <span className="text-green-600 flex items-center gap-1">
-                              <CheckCircle size={14} />
-                              {t('contact.list.replied')}
-                            </span>
-                          ) : (
-                            <span className="text-muted-foreground flex items-center gap-1">
-                              <Clock size={14} />
-                              {t('contact.list.waiting')}
-                            </span>
-                          )}
-                        </div>
+            {isLoading ? (
+              <LoadingSpinner className="py-12" />
+            ) : contacts.length > 0 ? (
+              <>
+                <div className="space-y-0">
+                  {contacts.map((contact) => (
+                    <Link
+                      key={contact.id}
+                      to={`/contact/${contact.id}`}
+                      className="group flex items-center justify-between py-4 border-t border-border hover:bg-muted/30 transition-colors -mx-4 px-4"
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        {contact.is_secret && (
+                          <Lock size={14} className="text-muted-foreground flex-shrink-0" />
+                        )}
+                        <span className="truncate">{contact.name}</span>
+                        <span className={`text-xs px-2 py-0.5 rounded ${
+                          contact.has_reply
+                            ? 'bg-primary/10 text-primary'
+                            : 'bg-muted text-muted-foreground'
+                        }`}>
+                          {contact.has_reply ? t('contact.list.replied') : t('contact.list.waiting')}
+                        </span>
                       </div>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {formatDate(contact.created_at, lang)}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
+                      <div className="flex items-center gap-3 flex-shrink-0 ml-4">
+                        <span className="text-sm text-muted-foreground">
+                          {formatDate(contact.created_at, lang)}
+                        </span>
+                        <ArrowRight
+                          size={14}
+                          className="text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all"
+                        />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
 
-              <div className="pt-4">
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={handlePageChange}
-                />
-              </div>
-            </div>
-          ) : (
-            <p className="text-center text-muted-foreground py-12">
-              {t('contact.list.empty')}
-            </p>
-          )}
+                <div className="mt-8">
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
+              </>
+            ) : (
+              <p className="py-12 text-muted-foreground">
+                {t('contact.list.empty')}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>

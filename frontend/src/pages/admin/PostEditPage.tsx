@@ -99,7 +99,7 @@ export function PostEditPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Korean */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg">🇰🇷 한국어</h3>
+              <h3 className="font-medium text-base text-muted-foreground">한국어</h3>
               <div>
                 <Label htmlFor="title_ko">제목 *</Label>
                 <Input
@@ -127,7 +127,7 @@ export function PostEditPage() {
 
             {/* English */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg">🇺🇸 English</h3>
+              <h3 className="font-medium text-base text-muted-foreground">English</h3>
               <div>
                 <Label htmlFor="title_en">Title</Label>
                 <Input
@@ -153,7 +153,7 @@ export function PostEditPage() {
 
             {/* Chinese */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg">🇨🇳 中文</h3>
+              <h3 className="font-medium text-base text-muted-foreground">中文</h3>
               <div>
                 <Label htmlFor="title_zh">标题</Label>
                 <Input

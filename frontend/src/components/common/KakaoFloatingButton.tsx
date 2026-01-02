@@ -12,15 +12,10 @@ export function KakaoFloatingButton() {
       href={KAKAO_CHAT_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#FEE500] rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 group"
+      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-12 h-12 bg-[#FEE500] rounded-full shadow-md hover:shadow-lg transition-shadow"
       title={t('kakao.chat')}
     >
-      <MessageCircle className="w-7 h-7 text-[#3C1E1E]" />
-
-      {/* Tooltip */}
-      <span className="absolute right-full mr-3 px-3 py-1.5 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-        {t('kakao.chat')}
-      </span>
+      <MessageCircle className="w-6 h-6 text-[#3C1E1E]" />
     </a>
   )
 }

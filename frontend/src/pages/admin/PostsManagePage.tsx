@@ -55,7 +55,7 @@ export function PostsManagePage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">{t('admin.posts.title')}</h1>
+        <h1 className="text-2xl font-semibold">{t('admin.posts.title')}</h1>
         <Link to="/admin/posts/new">
           <Button className="gap-2">
             <Plus size={16} />

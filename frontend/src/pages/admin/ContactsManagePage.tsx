@@ -91,7 +91,7 @@ export function ContactsManagePage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">{t('admin.contacts.title')}</h1>
+      <h1 className="text-2xl font-semibold">{t('admin.contacts.title')}</h1>
 
       {isLoading ? (
         <LoadingSpinner className="py-24" size="lg" />

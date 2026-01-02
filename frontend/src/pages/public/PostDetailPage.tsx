@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, Calendar, Eye } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { ArrowLeft } from 'lucide-react'
 import { LoadingSpinner } from '@/components/common/LoadingSpinner'
 import { postsApi } from '@/lib/api'
 import { getLocalizedField, formatDate, type Language } from '@/lib/utils'
@@ -34,22 +33,27 @@ export function PostDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="container py-24">
-        <LoadingSpinner size="lg" />
+      <div className="section-padding">
+        <div className="container">
+          <LoadingSpinner size="lg" />
+        </div>
       </div>
     )
   }
 
   if (error || !post) {
     return (
-      <div className="container py-24 text-center">
-        <p className="text-muted-foreground mb-4">{error || t('common.error')}</p>
-        <Link to="/posts">
-          <Button variant="outline">
-            <ArrowLeft size={16} className="mr-2" />
+      <div className="section-padding">
+        <div className="container">
+          <p className="text-muted-foreground mb-6">{error || t('common.error')}</p>
+          <Link
+            to="/posts"
+            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft size={14} className="mr-2" />
             {t('common.back')}
-          </Button>
-        </Link>
+          </Link>
+        </div>
       </div>
     )
   }
@@ -58,40 +62,42 @@ export function PostDetailPage() {
   const content = getLocalizedField(post, 'content', lang)
 
   return (
-    <article className="container py-8 md:py-12 max-w-4xl">
-      <Link to="/posts" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6">
-        <ArrowLeft size={16} className="mr-2" />
-        {t('common.back')}
-      </Link>
+    <article className="section-padding">
+      <div className="container">
+        <div className="max-w-3xl">
+          <Link
+            to="/posts"
+            className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors mb-12"
+          >
+            <ArrowLeft size={14} className="mr-2" />
+            Back to Blog
+          </Link>
 
-      {post.thumbnail_url && (
-        <div className="aspect-video mb-8 rounded-lg overflow-hidden bg-muted">
-          <img
-            src={post.thumbnail_url}
-            alt={title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
+          <header className="mb-12">
+            <p className="text-sm text-muted-foreground mb-4">
+              {formatDate(post.created_at, lang)}
+            </p>
+            <h1 className="text-fluid-3xl font-medium tracking-tight leading-tight">
+              {title}
+            </h1>
+          </header>
 
-      <header className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
-        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1">
-            <Calendar size={14} />
-            <span>{formatDate(post.created_at, lang)}</span>
+          {post.thumbnail_url && (
+            <div className="aspect-video mb-12 bg-muted overflow-hidden">
+              <img
+                src={post.thumbnail_url}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+
+          <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-6">
+            {content.split('\n').map((paragraph, index) =>
+              paragraph.trim() ? <p key={index}>{paragraph}</p> : null
+            )}
           </div>
-          <div className="flex items-center gap-1">
-            <Eye size={14} />
-            <span>{post.view_count} {t('posts.views')}</span>
-          </div>
         </div>
-      </header>
-
-      <div className="prose prose-slate max-w-none">
-        {content.split('\n').map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
       </div>
     </article>
   )

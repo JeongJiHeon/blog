@@ -1,75 +1,65 @@
 import { useTranslation } from 'react-i18next'
-import { Clock, MapPin, Phone, Mail } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export function AboutPage() {
   const { t } = useTranslation()
 
   return (
-    <div className="container py-8 md:py-12">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4">{t('about.title')}</h1>
-        <p className="text-lg text-muted-foreground mb-8">{t('about.description')}</p>
+    <div className="section-padding">
+      <div className="container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* Left column */}
+          <div>
+            <p className="text-fluid-sm text-muted-foreground mb-3 tracking-wide uppercase">
+              About
+            </p>
+            <h1 className="text-fluid-3xl font-medium tracking-tight leading-tight mb-8">
+              {t('about.title')}
+            </h1>
+            <p className="text-fluid-base text-muted-foreground leading-relaxed">
+              {t('about.description')}
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Business Hours */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Clock className="text-primary" size={20} />
+          {/* Right column */}
+          <div className="space-y-12">
+            <section>
+              <h2 className="text-sm font-medium uppercase tracking-wide mb-4">
                 {t('about.hours.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-muted-foreground">
-              <p>{t('about.hours.weekday')}</p>
-              <p>{t('about.hours.saturday')}</p>
-              <p>{t('about.hours.sunday')}</p>
-            </CardContent>
-          </Card>
+              </h2>
+              <div className="text-muted-foreground space-y-2">
+                <p>{t('about.hours.weekday')}</p>
+                <p>{t('about.hours.saturday')}</p>
+                <p>{t('about.hours.sunday')}</p>
+              </div>
+            </section>
 
-          {/* Location */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPin className="text-primary" size={20} />
+            <section>
+              <h2 className="text-sm font-medium uppercase tracking-wide mb-4">
                 {t('about.location.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-muted-foreground">
-              <p>{t('about.location.address')}</p>
-            </CardContent>
-          </Card>
+              </h2>
+              <p className="text-muted-foreground">
+                {t('about.location.address')}
+              </p>
+            </section>
 
-          {/* Contact */}
-          <Card className="md:col-span-2">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Phone className="text-primary" size={20} />
+            <section>
+              <h2 className="text-sm font-medium uppercase tracking-wide mb-4">
                 {t('about.contact.title')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Phone size={16} />
-                <span>044-123-4567</span>
+              </h2>
+              <div className="text-muted-foreground space-y-2">
+                <p>044-123-4567</p>
+                <p>info@sejong-admin.kr</p>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail size={16} />
-                <span>info@sejong-admin.kr</span>
-              </div>
-            </CardContent>
-          </Card>
+            </section>
+          </div>
         </div>
 
         {/* Map placeholder */}
-        <Card className="mt-6">
-          <CardContent className="p-0">
-            <div className="aspect-video bg-muted flex items-center justify-center text-muted-foreground">
-              {/* TODO: Add actual map integration (Google Maps, Kakao Map, etc.) */}
-              <p>Map Placeholder</p>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="mt-20 pt-20 border-t border-border">
+          <div className="aspect-[21/9] bg-muted flex items-center justify-center text-muted-foreground text-sm">
+            Map
+          </div>
+        </div>
       </div>
     </div>
   )

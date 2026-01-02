@@ -39,31 +39,27 @@ export function DashboardPage() {
       label: t('admin.dashboard.stats.totalPosts'),
       value: data.stats.total_posts,
       icon: FileText,
-      color: 'text-blue-600',
     },
     {
       label: t('admin.dashboard.stats.publicPosts'),
       value: data.stats.public_posts,
       icon: Eye,
-      color: 'text-green-600',
     },
     {
       label: t('admin.dashboard.stats.totalContacts'),
       value: data.stats.total_contacts,
       icon: MessageSquare,
-      color: 'text-purple-600',
     },
     {
       label: t('admin.dashboard.stats.unrepliedContacts'),
       value: data.stats.unreplied_contacts,
       icon: AlertCircle,
-      color: 'text-orange-600',
     },
   ]
 
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-bold">{t('admin.dashboard.title')}</h1>
+      <h1 className="text-2xl font-semibold">{t('admin.dashboard.title')}</h1>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -75,9 +71,9 @@ export function DashboardPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-muted-foreground">{stat.label}</p>
-                    <p className="text-3xl font-bold">{stat.value}</p>
+                    <p className="text-2xl font-semibold">{stat.value}</p>
                   </div>
-                  <Icon className={`w-8 h-8 ${stat.color}`} />
+                  <Icon className="w-6 h-6 text-muted-foreground" />
                 </div>
               </CardContent>
             </Card>
