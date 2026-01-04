@@ -1,15 +1,24 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
 from datetime import datetime
+import os
+import uuid
+from pathlib import Path
 from app.database import get_db
 from app.models.post import Post
 from app.models.contact import Contact
 from app.models.admin import Admin
+from app.models.service import Service
 from app.schemas.post import PostListResponse, PaginatedPostsResponse
 from app.schemas.contact import ContactDetailResponse, ContactReply, PaginatedContactsResponse
+from app.schemas.service import ServiceListResponse, PaginatedServicesResponse
 from app.middleware.auth import get_current_admin
 from app.utils.pagination import paginate
+from app.config import get_settings
+
+settings = get_settings()
 
 router = APIRouter()
 
@@ -29,6 +38,9 @@ async def get_dashboard_stats(
     total_contacts = db.query(Contact).count()
     unread_contacts = db.query(Contact).filter(Contact.is_read == False).count()
     unreplied_contacts = db.query(Contact).filter(Contact.admin_reply == None).count()
+    total_services = db.query(Service).count()
+    published_services = db.query(Service).filter(Service.is_published == True).count()
+    featured_services = db.query(Service).filter(Service.is_featured == True).count()
 
     recent_posts = db.query(Post).order_by(desc(Post.created_at)).limit(5).all()
     recent_contacts = db.query(Contact).order_by(desc(Contact.created_at)).limit(5).all()
@@ -39,7 +51,10 @@ async def get_dashboard_stats(
             "public_posts": public_posts,
             "total_contacts": total_contacts,
             "unread_contacts": unread_contacts,
-            "unreplied_contacts": unreplied_contacts
+            "unreplied_contacts": unreplied_contacts,
+            "total_services": total_services,
+            "published_services": published_services,
+            "featured_services": featured_services
         },
         "recent_posts": [PostListResponse.model_validate(p) for p in recent_posts],
         "recent_contacts": [ContactDetailResponse.model_validate(c) for c in recent_contacts]
@@ -63,6 +78,30 @@ async def get_all_posts(
 
     return PaginatedPostsResponse(
         items=[PostListResponse.model_validate(p) for p in result["items"]],
+        total=result["total"],
+        page=result["page"],
+        limit=result["limit"],
+        total_pages=result["total_pages"]
+    )
+
+
+# ============ Services Management ============
+
+@router.get("/services", response_model=PaginatedServicesResponse)
+async def get_all_services(
+    page: int = 1,
+    limit: int = 10,
+    db: Session = Depends(get_db),
+    current_admin: Admin = Depends(get_current_admin)
+):
+    """
+    Get all services including unpublished. Admin only.
+    """
+    query = db.query(Service).order_by(Service.order, desc(Service.created_at))
+    result = paginate(query, page, limit)
+
+    return PaginatedServicesResponse(
+        items=[ServiceListResponse.model_validate(s) for s in result["items"]],
         total=result["total"],
         page=result["page"],
         limit=result["limit"],
@@ -187,3 +226,47 @@ async def delete_contact(
     db.delete(contact)
     db.commit()
     return None
+
+
+# ============ File Upload ============
+
+ALLOWED_IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+ALLOWED_FILE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".pdf", ".doc", ".docx"}
+
+
+@router.post("/upload")
+async def upload_file(
+    file: UploadFile = File(...),
+    current_admin: Admin = Depends(get_current_admin)
+):
+    """
+    Upload a file. Admin only.
+    Returns the URL to access the uploaded file.
+    """
+    # Validate file extension
+    file_ext = Path(file.filename).suffix.lower()
+    if file_ext not in ALLOWED_IMAGE_EXTENSIONS:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"File type not allowed. Allowed types: {', '.join(ALLOWED_IMAGE_EXTENSIONS)}"
+        )
+
+    # Validate file size
+    contents = await file.read()
+    if len(contents) > settings.MAX_UPLOAD_SIZE:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"File size exceeds maximum allowed size ({settings.MAX_UPLOAD_SIZE / 1024 / 1024}MB)"
+        )
+
+    # Generate unique filename
+    unique_filename = f"{uuid.uuid4()}{file_ext}"
+    file_path = Path(settings.UPLOAD_DIR) / unique_filename
+
+    # Save file
+    with open(file_path, "wb") as f:
+        f.write(contents)
+
+    # Return URL
+    file_url = f"/uploads/{unique_filename}"
+    return JSONResponse(content={"url": file_url, "filename": unique_filename})

@@ -27,5 +27,5 @@ def get_db():
 
 def init_db():
     """Initialize database tables"""
-    from app.models import post, contact, admin  # noqa: F401
+    from app.models import post, contact, admin, service  # noqa: F401
     Base.metadata.create_all(bind=engine)

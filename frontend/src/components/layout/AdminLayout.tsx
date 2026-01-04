@@ -8,6 +8,7 @@ import {
   LogOut,
   Menu,
   X,
+  Briefcase,
 } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
@@ -27,6 +28,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   const navItems = [
     { path: '/admin/dashboard', label: t('admin.dashboard.title'), icon: LayoutDashboard },
+    { path: '/admin/services', label: t('admin.services.title', 'Services'), icon: Briefcase },
     { path: '/admin/posts', label: t('admin.posts.title'), icon: FileText },
     { path: '/admin/contacts', label: t('admin.contacts.title'), icon: MessageSquare },
   ]

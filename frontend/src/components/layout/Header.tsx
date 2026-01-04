@@ -31,15 +31,15 @@ export function Header() {
   }
 
   const homeNavItems = [
-    { id: 'about', label: 'About' },
     { id: 'services', label: 'Services' },
-    { id: 'blog', label: 'Blog' },
+    { id: 'board', label: 'Board' },
     { id: 'inquiry', label: 'Inquiry' },
   ]
 
   const pageNavItems = [
     { path: '/', label: t('nav.home') },
-    { path: '/posts', label: t('nav.posts') },
+    { path: '/service', label: t('nav.service', 'Services') },
+    { path: '/board', label: t('nav.board', 'Board') },
     { path: '/contact', label: t('nav.contact') },
     { path: '/about', label: t('nav.about') },
   ]

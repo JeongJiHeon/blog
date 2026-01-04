@@ -95,6 +95,58 @@ export interface PaginatedResponse<T> {
   total_pages: number
 }
 
+// Service types
+export interface Service {
+  id: number
+  title_ko: string
+  title_en: string | null
+  title_zh: string | null
+  description_ko: string
+  description_en: string | null
+  description_zh: string | null
+  icon: string | null
+  is_published: boolean
+  is_featured: boolean
+  order: number
+  created_at: string
+  updated_at: string | null
+}
+
+export interface ServiceListItem {
+  id: number
+  title_ko: string
+  title_en: string | null
+  title_zh: string | null
+  description_ko: string
+  description_en: string | null
+  description_zh: string | null
+  icon: string | null
+  is_published: boolean
+  is_featured: boolean
+  order: number
+}
+
+export interface ServiceCreate {
+  title_ko: string
+  title_en?: string
+  title_zh?: string
+  description_ko: string
+  description_en?: string
+  description_zh?: string
+  icon?: string
+  is_published?: boolean
+  is_featured?: boolean
+  order?: number
+}
+
+export interface ServiceUpdate extends Partial<ServiceCreate> {}
+
+// Home data types
+export interface HomeData {
+  featured_services: ServiceListItem[]
+  latest_posts: PostListItem[]
+}
+
 // Dashboard types
 export interface DashboardStats {
   total_posts: number
@@ -102,6 +154,9 @@ export interface DashboardStats {
   total_contacts: number
   unread_contacts: number
   unreplied_contacts: number
+  total_services: number
+  published_services: number
+  featured_services: number
 }
 
 export interface DashboardData {

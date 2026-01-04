@@ -6,7 +6,7 @@ import os
 
 from app.config import settings
 from app.database import init_db
-from app.routers import posts, contacts, auth, admin
+from app.routers import posts, contacts, auth, admin, services, home
 
 
 @asynccontextmanager
@@ -45,6 +45,8 @@ app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(posts.router, prefix="/api/posts", tags=["Posts"])
 app.include_router(contacts.router, prefix="/api/contacts", tags=["Contacts"])
 app.include_router(admin.router, prefix="/api/admin", tags=["Admin"])
+app.include_router(services.router, prefix="/api/services", tags=["Services"])
+app.include_router(home.router, prefix="/api/home", tags=["Home"])
 
 
 @app.get("/")

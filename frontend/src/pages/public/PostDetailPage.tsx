@@ -92,10 +92,55 @@ export function PostDetailPage() {
             </div>
           )}
 
-          <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-6">
-            {content.split('\n').map((paragraph, index) =>
-              paragraph.trim() ? <p key={index}>{paragraph}</p> : null
-            )}
+          <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed">
+            {content.split('\n\n').map((block, blockIndex) => {
+              const trimmedBlock = block.trim()
+              if (!trimmedBlock) return null
+
+              // Check if block contains markdown image
+              const markdownImageMatch = trimmedBlock.match(/^!\[([^\]]*)\]\(([^)]+)\)$/)
+              if (markdownImageMatch) {
+                const [, alt, src] = markdownImageMatch
+                const fullSrc = src.startsWith('http') ? src : `${window.location.origin}${src}`
+                return (
+                  <div key={blockIndex} className="my-8">
+                    <img
+                      src={fullSrc}
+                      alt={alt || '이미지'}
+                      className="w-full h-auto rounded-lg"
+                    />
+                  </div>
+                )
+              }
+
+              // Check if block contains HTML img tag
+              const htmlImageMatch = trimmedBlock.match(/<img[^>]+src="([^"]+)"[^>]*>/)
+              if (htmlImageMatch) {
+                const src = htmlImageMatch[1]
+                const fullSrc = src.startsWith('http') ? src : `${window.location.origin}${src}`
+                return (
+                  <div key={blockIndex} className="my-8">
+                    <img
+                      src={fullSrc}
+                      alt="이미지"
+                      className="w-full h-auto rounded-lg"
+                    />
+                  </div>
+                )
+              }
+
+              // Regular text paragraph
+              return (
+                <p key={blockIndex} className="mb-6">
+                  {trimmedBlock.split('\n').map((line, lineIndex, lines) => (
+                    <span key={lineIndex}>
+                      {line}
+                      {lineIndex < lines.length - 1 && <br />}
+                    </span>
+                  ))}
+                </p>
+              )
+            })}
           </div>
         </div>
       </div>

@@ -10,7 +10,12 @@ import type {
   AuthToken,
   LoginCredentials,
   PaginatedResponse,
-  DashboardData
+  DashboardData,
+  Service,
+  ServiceListItem,
+  ServiceCreate,
+  ServiceUpdate,
+  HomeData
 } from '@/types'
 
 const api = axios.create({
@@ -110,6 +115,50 @@ export const contactsApi = {
   },
 }
 
+// Services API
+export const servicesApi = {
+  getList: async (page = 1, limit = 10): Promise<PaginatedResponse<ServiceListItem>> => {
+    const response = await api.get<PaginatedResponse<ServiceListItem>>('/services', {
+      params: { page, limit },
+    })
+    return response.data
+  },
+
+  getFeatured: async (limit = 4): Promise<ServiceListItem[]> => {
+    const response = await api.get<ServiceListItem[]>('/services/featured', {
+      params: { limit },
+    })
+    return response.data
+  },
+
+  getById: async (id: number): Promise<Service> => {
+    const response = await api.get<Service>(`/services/${id}`)
+    return response.data
+  },
+
+  create: async (data: ServiceCreate): Promise<Service> => {
+    const response = await api.post<Service>('/services', data)
+    return response.data
+  },
+
+  update: async (id: number, data: ServiceUpdate): Promise<Service> => {
+    const response = await api.put<Service>(`/services/${id}`, data)
+    return response.data
+  },
+
+  delete: async (id: number): Promise<void> => {
+    await api.delete(`/services/${id}`)
+  },
+}
+
+// Home API
+export const homeApi = {
+  getData: async (): Promise<HomeData> => {
+    const response = await api.get<HomeData>('/home')
+    return response.data
+  },
+}
+
 // Admin API
 export const adminApi = {
   getDashboard: async (): Promise<DashboardData> => {
@@ -150,6 +199,29 @@ export const adminApi = {
 
   deleteContact: async (id: number): Promise<void> => {
     await api.delete(`/admin/contacts/${id}`)
+  },
+
+  getAllServices: async (page = 1, limit = 10): Promise<PaginatedResponse<ServiceListItem>> => {
+    const response = await api.get<PaginatedResponse<ServiceListItem>>('/admin/services', {
+      params: { page, limit },
+    })
+    return response.data
+  },
+
+  uploadFile: async (file: File): Promise<{ url: string; filename: string }> => {
+    const formData = new FormData()
+    formData.append('file', file)
+
+    const response = await api.post<{ url: string; filename: string }>(
+      '/admin/upload',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    )
+    return response.data
   },
 }
 
